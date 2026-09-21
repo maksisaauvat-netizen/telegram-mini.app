@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#080c13">
+<title>Resonant Casino</title>
+<style>
+:root{--bg:#080c13;--card:#111925;--card2:#151f2d;--line:#263247;--text:#f5f7fb;--muted:#8794a8;--green:#6ee7b7;--green2:#3fcf9a}
+*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body{min-height:100vh}.app{width:min(520px,100%);margin:auto;padding:14px 14px 96px}.top{display:flex;align-items:center;gap:10px;margin-bottom:12px}.logo{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(145deg,#d4fff1,#54d6a7);color:#06110d;font-size:21px;font-weight:950;box-shadow:0 8px 25px #4fe0ad26}.brand{font-size:14px;font-weight:950;letter-spacing:.8px;flex:1}.brand small{display:block;font-size:8px;letter-spacing:1.5px;color:#77859a;margin-top:2px}.avatar{width:40px;height:40px;border:1px solid var(--line);border-radius:50%;background:#1b2635;font-weight:900}
+.controls{display:flex;align-items:center;gap:7px;margin-bottom:13px}.switch{border:1px solid var(--line);background:#101722;color:#dfe6f0;border-radius:11px;padding:8px 10px;font-size:10px;font-weight:850}.balance{margin-left:auto;border:1px solid #245445;background:#11251f;color:var(--green);border-radius:11px;padding:8px 10px;font-size:10px;font-weight:900}
+.hero{position:relative;overflow:hidden;min-height:235px;border:1px solid #2b384d;border-radius:25px;padding:19px;background:radial-gradient(circle at 12% 8%,#6ee7b72e,transparent 30%),radial-gradient(circle at 91% 12%,#7785ff27,transparent 35%),linear-gradient(145deg,#182332,#0c121b 70%);box-shadow:0 20px 55px #00000036}
+.hero:before{content:"";position:absolute;width:220px;height:220px;border:1px solid #ffffff09;border-radius:50%;right:-105px;bottom:-120px;box-shadow:0 0 0 28px #ffffff05,0 0 0 56px #ffffff03}
+.heroTop{display:flex;justify-content:space-between;align-items:center;position:relative}.live{display:flex;align-items:center;gap:6px;padding:7px 9px;border-radius:10px;background:#6ee7b710;border:1px solid #6ee7b728;color:#9af1cf;font-size:9px;font-weight:900}.dot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green)}
+.hero h1{position:relative;margin:24px 0 6px;font-size:31px;letter-spacing:-1.3px}.hero p{position:relative;margin:0;max-width:300px;color:#aeb9c8;font-size:12px;line-height:1.5}.heroBtns{display:flex;gap:8px;margin-top:18px;position:relative}.btn{border:1px solid #ffffff14;background:#ffffff08;border-radius:12px;padding:10px 13px;font-size:11px;font-weight:900}.primary{background:var(--green);border-color:var(--green);color:#07130f}
+.balanceBox{display:flex;justify-content:space-between;align-items:center;margin-top:12px;padding:14px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(135deg,#121a27,#0f151f)}.balanceBox small{display:block;color:#78869a;font-size:8px;text-transform:uppercase;letter-spacing:1px;margin-bottom:5px}.sum{font-size:21px;font-weight:950}.plus{width:35px;height:35px;border:1px solid #2d6658;background:#15392f;color:var(--green);border-radius:11px;font-size:20px}
+.section{display:flex;align-items:end;justify-content:space-between;margin:20px 2px 10px}.section h2{font-size:18px;margin:0}.section span{font-size:9px;color:#6e7c91;letter-spacing:.5px}
+.games{display:grid;grid-template-columns:1fr 1fr;gap:10px}.game{position:relative;overflow:hidden;min-height:163px;padding:15px;text-align:left;border:1px solid var(--line);border-radius:20px;background:linear-gradient(155deg,#151e2b,#0d141e);color:#fff}.game:after{content:"";position:absolute;width:125px;height:125px;border-radius:50%;right:-60px;top:-52px;background:#6ee7b70a}.crash:after{background:#ffc15b10}.mines:after{background:#6ba1ff10}.tower{grid-column:1/-1;min-height:137px}.tower:after{background:#c28cff0d}.icon{width:40px;height:40px;border-radius:12px;background:#1c2838;border:1px solid #314158;display:grid;place-items:center;font-size:19px;margin-bottom:21px}.game strong{font-size:17px}.game p{margin:5px 0 0;color:#8491a5;font-size:10px;line-height:1.35;max-width:190px}.arrow{position:absolute;right:12px;bottom:12px;width:29px;height:29px;border-radius:9px;background:#192434;display:grid;place-items:center;color:#aeb9c8}
+.notice{display:flex;gap:10px;align-items:center;margin-top:12px;padding:12px;border:1px solid var(--line);border-radius:17px;background:linear-gradient(90deg,#14231f,#111823)}.check{width:35px;height:35px;border-radius:11px;background:#173c32;display:grid;place-items:center;color:var(--green);font-weight:900}.notice b{font-size:11px}.notice span{display:block;color:#7e8ca0;font-size:9px;margin-top:3px}
+.nav{position:fixed;z-index:20;left:50%;bottom:10px;transform:translateX(-50%);width:min(492px,calc(100% - 28px));display:grid;grid-template-columns:1fr 1fr;padding:6px;border:1px solid var(--line);background:#0d141eea;backdrop-filter:blur(18px);border-radius:19px;box-shadow:0 12px 35px #00000050}.nav button{border:0;background:transparent;border-radius:13px;padding:11px 8px;color:#8d9aae;font-size:11px;font-weight:900}.nav .on{background:#1a2636;color:#fff}
+.sheet{padding:4px 0}.back{border:1px solid var(--line);background:var(--card);border-radius:11px;padding:9px 12px;margin-bottom:14px;color:#fff}.panel{border:1px solid var(--line);background:var(--card);border-radius:20px;padding:17px}.stat{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid #ffffff08;font-size:12px}.stat:last-child{border:0}
+@media(max-width:360px){.games{grid-template-columns:1fr}.tower{grid-column:auto}}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+let lang="ru",currency="USDT",balance=1250.50;
+const t=(a,b)=>lang==="ru"?a:b;
+const money=()=>currency==="USDT"?balance.toFixed(2)+" USDT":(balance*92).toLocaleString("ru-RU",{maximumFractionDigits:2})+" RUB";
+
+function nav(active){return `<div class="nav"><button class="${active==="play"?"on":""}" onclick="home()">🎮 ${t("Играть","Play")}</button><button class="${active==="wallet"?"on":""}" onclick="wallet()">💰 ${t("Кошелек","Wallet")}</button></div>`}
+function controls(){return `<div class="controls"><button class="switch" onclick="lang=lang==='ru'?'en':'ru';home()">RU / EN</button><button class="switch" onclick="currency=currency==='USDT'?'RUB':'USDT';home()">USDT / RUB</button><button class="balance">${money()}</button></div>`}
+function home(){
+document.getElementById("app").innerHTML=`<main class="app">
+<div class="top"><div class="logo">♛</div><div class="brand">RESONANT<small>CASINO • DEMO</small></div><button class="avatar" onclick="profile()">U</button></div>
+${controls()}
+<section class="hero"><div class="heroTop"><div class="logo">♛</div><div class="live"><i class="dot"></i>${t("СЕРВЕР ONLINE","SERVER ONLINE")}</div></div><h1>Resonant Casino</h1><p>${t("Игровой центр с быстрым доступом к CRASH, MINES и TOWER.","A polished game hub with instant access to CRASH, MINES and TOWER.")}</p><div class="heroBtns"><button class="btn primary" onclick="game('CRASH')">▶ ${t("Играть сейчас","Play now")}</button><button class="btn" onclick="profile()">◉ ${t("Профиль","Profile")}</button></div></section>
+<div class="balanceBox"><div><small>${t("Доступный баланс","Available balance")}</small><div class="sum">${money()}</div></div><button class="plus" onclick="wallet()">+</button></div>
+<div class="section"><h2>${t("Игры","Games")}</h2><span>${t("3 DEMO ИГРЫ","3 DEMO GAMES")}</span></div>
+<div class="games">
+<button class="game crash" onclick="game('CRASH')"><div class="icon">↗</div><strong>CRASH</strong><p>${t("Поймай множитель до краша","Catch the multiplier")}</p><div class="arrow">→</div></button>
+<button class="game mines" onclick="game('MINES')"><div class="icon">◆</div><strong>MINES</strong><p>${t("Открывай безопасные клетки","Reveal safe cells")}</p><div class="arrow">→</div></button>
+<button class="game tower" onclick="game('TOWER')"><div class="icon">♜</div><strong>TOWER</strong><p>${t("Поднимайся по уровням и увеличивай коэффициент","Climb levels and increase the multiplier")}</p><div class="arrow">→</div></button>
+</div>
+<div class="notice"><div class="check">✓</div><div><b>${t("DEMO-режим активен","DEMO mode active")}</b><span>${t("Реальные денежные операции отключены","Real-money transactions are disabled")}</span></div></div>
+</main>${nav("play")}`;
+}
+function profile(){document.getElementById("app").innerHTML=`<main class="app sheet"><button class="back" onclick="home()">← ${t("Назад","Back")}</button><div class="panel"><h2>👤 ${t("Профиль","Profile")}</h2><div class="stat"><span>${t("Баланс","Balance")}</span><b>${money()}</b></div><div class="stat"><span>ID</span><b>DEMO-USER</b></div><div class="stat"><span>${t("Всего ставок","Total bets")}</span><b>42</b></div><div class="stat"><span>${t("Общий оборот","Turnover")}</span><b>3,840 USDT</b></div><div class="stat"><span>${t("Всего выиграно","Total won")}</span><b>4,120 USDT</b></div><div class="stat"><span>${t("Лучший коэффициент","Best multiplier")}</span><b>18.42x</b></div></div></main>${nav()}`}
+function wallet(){document.getElementById("app").innerHTML=`<main class="app sheet"><button class="back" onclick="home()">← ${t("Назад","Back")}</button><div class="panel"><h2>💰 ${t("Кошелек","Wallet")}</h2><h1>${money()}</h1><p style="color:var(--muted)">${t("Пополнение и вывод в DEMO отключены.","Deposits and withdrawals are disabled in DEMO.")}</p></div></main>${nav("wallet")}`}
+function game(name){document.getElementById("app").innerHTML=`<main class="app sheet"><button class="back" onclick="home()">← ${t("Назад","Back")}</button><div class="panel"><h2>${name}</h2><p style="color:var(--muted)">${t("Интерактивный DEMO-экран игры.","Interactive DEMO game screen.")}</p><div style="height:240px;display:grid;place-items:center;font-size:72px">${name==="CRASH"?"↗":name==="MINES"?"◆":"♜"}</div><button class="btn primary" onclick="home()">${t("Вернуться к играм","Back to games")}</button></div></main>`}
+home();
+</script>
+</body>
+</html>
