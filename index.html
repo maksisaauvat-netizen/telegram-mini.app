@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Resonant Casino</title>
+<style>
+:root{--bg:#070b12;--panel:#0d1420;--panel2:#111b29;--line:#1d2a3a;--text:#f4f7fb;--muted:#91a0b4;--a:#57d6ff;--a2:#9a7cff;--ok:#5ee6a8;--warn:#ffd166;--danger:#ff6b7a;--r:18px}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(900px 500px at 80% -10%,#172641 0,transparent 60%),var(--bg);color:var(--text);font:15px/1.45 Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+button{font:inherit;color:inherit}.app{min-height:100vh;padding-bottom:86px}.top{position:sticky;top:0;z-index:10;background:rgba(7,11,18,.82);backdrop-filter:blur(18px);border-bottom:1px solid var(--line);padding:14px 16px}.topin{max-width:980px;margin:auto;display:flex;align-items:center;justify-content:space-between}.brand{font-weight:800;letter-spacing:.4px}.brand span{color:var(--a)}.status{font-size:11px;color:var(--ok);border:1px solid #244a3a;border-radius:999px;padding:5px 9px}.wrap{max-width:980px;margin:auto;padding:18px 16px}.view{display:none}.view.active{display:block}.hero{padding:24px;border:1px solid var(--line);border-radius:24px;background:linear-gradient(135deg,#101b2b,#0b111b);box-shadow:0 18px 60px #0005}.eyebrow{color:var(--a);font-size:12px;text-transform:uppercase;letter-spacing:1.5px;font-weight:800}.hero h1{font-size:34px;line-height:1.05;margin:10px 0}.hero p{color:var(--muted);max-width:680px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:14px}.card{background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:var(--r);padding:16px}.card h3{margin:0 0 7px}.muted{color:var(--muted)}.balance{font-size:28px;font-weight:800;margin:8px 0}.btn{border:0;border-radius:13px;padding:11px 14px;background:linear-gradient(135deg,var(--a),#7ba7ff);color:#061018;font-weight:800;cursor:pointer}.btn.secondary{background:#162232;color:var(--text);border:1px solid var(--line)}.btn:disabled{opacity:.45;cursor:not-allowed}.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}.game{min-height:170px;display:flex;flex-direction:column;justify-content:space-between}.game .tag{font-size:11px;color:var(--a);text-transform:uppercase}.game .title{font-size:21px;font-weight:800}.game .meta{color:var(--muted);font-size:13px}.list{display:grid;gap:9px}.row{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}.row:last-child{border-bottom:0}.pill{padding:4px 8px;border-radius:999px;font-size:11px;background:#172334;color:var(--muted)}.pill.ok{color:var(--ok);background:#103123}.pill.off{color:var(--warn);background:#32280f}.nav{position:fixed;bottom:0;left:0;right:0;z-index:20;background:rgba(7,11,18,.92);backdrop-filter:blur(18px);border-top:1px solid var(--line);padding:9px 8px calc(9px + env(safe-area-inset-bottom));display:flex;justify-content:center}.navin{width:min(980px,100%);display:grid;grid-template-columns:repeat(5,1fr);gap:5px}.nav button{background:none;border:0;color:var(--muted);padding:8px 4px;border-radius:12px;font-size:11px;cursor:pointer}.nav button.active{background:#111d2c;color:var(--a)}.notice{border-left:3px solid var(--warn);padding:11px 13px;background:#19160d;border-radius:10px;color:#d9cfaa;margin-top:14px}.modal{position:fixed;inset:0;display:none;align-items:flex-end;justify-content:center;background:#0009;z-index:30}.modal.show{display:flex}.sheet{width:min(680px,100%);background:#0d1420;border:1px solid var(--line);border-radius:24px 24px 0 0;padding:20px;max-height:85vh;overflow:auto}.close{float:right;border:0;background:#172232;border-radius:10px;padding:8px;cursor:pointer}@media(min-width:700px){.modal{align-items:center}.sheet{border-radius:24px}.hero h1{font-size:46px}}@media(max-width:560px){.grid{grid-template-columns:1fr}.hero{padding:20px}.hero h1{font-size:31px}}
+
+:root{--ice:#dff8ff;--blue:#2bbcff;--deep:#030812;--glass:rgba(7,16,29,.72);--glow:0 0 28px rgba(43,188,255,.24)}
+body{background:radial-gradient(circle at 50% -10%,#15365f 0,#06101e 34%,#02050b 72%);overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:linear-gradient(rgba(255,255,255,.015) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.012) 1px,transparent 1px);background-size:42px 42px;mask-image:linear-gradient(to bottom,#000,transparent 85%);z-index:-1}
+.brand{font-family:Georgia,serif;font-size:18px;letter-spacing:1.5px;text-shadow:0 0 14px #7de5ff}
+.top{border-bottom-color:#153a5b}.topin{gap:10px}.top-tools{display:flex;align-items:center;gap:8px}
+.lang{display:flex;padding:3px;border:1px solid #17476b;border-radius:999px;background:#071322}.lang button{border:0;background:transparent;color:#7890a7;border-radius:999px;padding:5px 8px;font-size:10px;font-weight:800}.lang button.active{background:#12395b;color:#e8fbff;box-shadow:inset 0 0 14px #2bbcff22}
+.avatar-mini{width:34px;height:34px;border-radius:50%;object-fit:cover;border:1px solid #4ad6ff;box-shadow:0 0 16px #2bbcff55}
+.hero{position:relative;overflow:hidden;min-height:430px;background:linear-gradient(180deg,rgba(2,9,18,.22),rgba(3,9,17,.96)),url('resonant-hero.jpeg') center 25%/cover;border-color:#216087;box-shadow:var(--glow)}
+.hero:after{content:"";position:absolute;inset:auto 0 0;height:55%;background:linear-gradient(transparent,#050a12);pointer-events:none}
+.hero>*{position:relative;z-index:1}.hero .eyebrow{margin-top:150px}.hero h1{font-family:Georgia,serif;text-shadow:0 2px 25px #000,0 0 15px #a8efff}.hero p{color:#d1e2f0}
+.luxe-card{position:relative;overflow:hidden;background:linear-gradient(145deg,rgba(12,29,47,.92),rgba(4,11,20,.94));border:1px solid #1b638e;box-shadow:inset 0 0 0 1px #ffffff05,var(--glow)}
+.luxe-card:before{content:"";position:absolute;inset:-40% -20%;background:radial-gradient(circle,#55dfff18,transparent 58%);pointer-events:none}
+.section-title{display:flex;align-items:end;justify-content:space-between;gap:12px;margin-top:22px}.section-title h2{margin:0;font-family:Georgia,serif}
+.icon-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}.icon-tile{display:flex;flex-direction:column;align-items:center;gap:7px;padding:12px 6px;border:1px solid #17496b;border-radius:16px;background:linear-gradient(180deg,#0c1c2d,#07101c);cursor:pointer}.icon-tile span:last-child{font-size:10px;color:#b6c9da}.sigil{width:42px;height:42px;display:grid;place-items:center;border-radius:14px;color:#dffaff;border:1px solid #4ad6ff;background:radial-gradient(circle,#16486b,#07111e);box-shadow:0 0 20px #2bbcff33;font-size:19px}
+.game{min-height:185px;background:linear-gradient(150deg,#10253a,#050b13);border-color:#1a5d83;box-shadow:inset 0 0 30px #2bbcff09}
+.game .tag{color:#5ee4ff}.game .title{font-family:Georgia,serif}.game-art{height:76px;border-radius:13px;margin-bottom:10px;background:radial-gradient(circle at 50% 40%,#1e80b4,#071322 58%,#02060c);border:1px solid #2b91c1;display:grid;place-items:center;font-size:30px;box-shadow:inset 0 0 24px #2bbcff18}
+.nav{background:rgba(2,7,14,.94);border-top-color:#164666}.nav button.active{background:linear-gradient(180deg,#0d2d48,#0a1725);color:#7deaff;box-shadow:inset 0 0 18px #2bbcff18}
+.balance{font-family:Georgia,serif;text-shadow:0 0 16px #8cecff55}.notice{border-left-color:#46d8ff;background:#071d2b;color:#c9e8f2}
+.profile-head{display:flex;align-items:center;gap:14px}.profile-avatar{width:72px;height:72px;border-radius:50%;object-fit:cover;border:2px solid #72e9ff;box-shadow:0 0 24px #2bbcff55}
+@media(max-width:560px){.icon-grid{grid-template-columns:repeat(4,1fr)}.hero{min-height:500px}.hero .eyebrow{margin-top:180px}}
+
+/* Resonant visual design system */
+:root{
+ --silver:#e9fbff;--cyan:#55ddff;--cyan2:#1c8fd0;--navy:#061120;
+ --royal:#0a2340;--glass2:rgba(6,17,31,.82);--gold:#b8d8ff;
+}
+.top{box-shadow:0 8px 35px rgba(0,0,0,.28)}
+.brand{font-family:Georgia,serif;font-size:19px;letter-spacing:2px}
+.avatar-mini{background:#06111f}
+.hero{border-radius:26px}
+.hero .eyebrow{letter-spacing:2.4px}
+.hero h1{font-size:clamp(34px,7vw,58px);letter-spacing:-1.5px}
+.hero .hero-mark{
+ width:58px;height:58px;border-radius:18px;display:grid;place-items:center;
+ border:1px solid #6ce9ff;background:radial-gradient(circle at 35% 25%,#328dc0,#071426 68%);
+ box-shadow:0 0 35px #2bbcff40, inset 0 0 20px #9ff2ff15;font-size:26px;margin-bottom:12px
+}
+.quick-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-top:14px}
+.quick{border:1px solid #174b70;background:linear-gradient(180deg,#0d2033,#07111d);border-radius:17px;padding:12px 6px;text-align:center;cursor:pointer;box-shadow:inset 0 0 20px #2bbcff08}
+.quick:hover{border-color:#3ccfff;transform:translateY(-1px)}
+.quick .sigil{margin:auto;width:44px;height:44px;border-radius:50%;font-size:18px}
+.quick small{display:block;margin-top:7px;color:#b7cad9;font-size:10px}
+.card.luxe-card{border-radius:20px}
+.lobby-badge{display:inline-flex;align-items:center;gap:6px;padding:5px 9px;border-radius:999px;border:1px solid #195679;background:#071726;color:#81eaff;font-size:10px;letter-spacing:.7px}
+.stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:12px}
+.stat{padding:12px;border:1px solid #153d5b;border-radius:14px;background:#07121f}
+.stat b{display:block;font-family:Georgia,serif;font-size:17px}.stat span{font-size:10px;color:#7f95a8}
+.game .game-art{height:88px;border-radius:15px;position:relative;overflow:hidden}
+.game .game-art:after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,transparent 40%,#a9f3ff15)}
+.game .game-badge{position:absolute;top:8px;right:8px;z-index:2;padding:4px 7px;border-radius:999px;background:#061321cc;border:1px solid #2cbfff;color:#9eeeff;font-size:9px}
+.wallet-card{background:radial-gradient(circle at 90% 10%,#164e72 0,transparent 28%),linear-gradient(145deg,#0d2033,#06101c)}
+.wallet-card .diamond{font-size:34px;filter:drop-shadow(0 0 14px #4cdcff)}
+.security-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px}
+.security-chip{padding:10px 6px;text-align:center;border:1px solid #173d59;border-radius:13px;background:#06111d;color:#a9c2d4;font-size:9px}
+.security-chip b{display:block;color:#72e7ff;font-size:15px;margin-bottom:3px}
+.footer-brand{text-align:center;color:#5f7890;font:12px Georgia,serif;letter-spacing:2px;padding:22px 0}
+@media(max-width:560px){.quick-grid{grid-template-columns:repeat(4,1fr)}.stat-grid{grid-template-columns:1fr 1fr 1fr}.security-row{grid-template-columns:repeat(2,1fr)}}
+
+/* --- Resonant visual navigation v2 --- */
+body{background:#02050b url('resonant-assets/card-source.jpeg') center top/cover fixed no-repeat}
+body:after{content:"";position:fixed;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(1,5,12,.72),rgba(1,5,12,.94));z-index:-1}
+.top{background:rgba(1,7,15,.78);border-bottom:1px solid #164b70}
+.topin{justify-content:flex-end;position:relative}
+.logo-home{position:absolute;left:0;top:50%;transform:translateY(-50%);width:118px;height:48px;border:0;background:transparent;cursor:pointer;padding:0;z-index:3}
+.logo-home img{width:100%;height:100%;object-fit:contain;object-position:left center;filter:drop-shadow(0 0 12px rgba(74,214,255,.55))}
+.logo-home:active{transform:translateY(-50%) scale(.97)}
+.hero{background:linear-gradient(180deg,rgba(2,8,16,.08),rgba(2,7,13,.86)),url('resonant-assets/hero.jpeg') center/cover;min-height:560px;display:flex;flex-direction:column;justify-content:flex-end;padding:24px 22px 26px}
+.hero .hero-mark{display:none}.hero .eyebrow{margin-top:0}.hero h1{font-size:clamp(34px,7vw,54px);margin:8px 0 4px}.hero p{max-width:560px}
+.hero-main-btn{min-width:190px;margin-top:10px;box-shadow:0 0 30px rgba(43,188,255,.35)}
+.quick-grid{grid-template-columns:repeat(4,1fr)}
+.wallet-nav{position:relative!important;transform:scale(1.14);z-index:2;color:#dffaff!important;background:linear-gradient(180deg,#0c2b46,#071524)!important;border:1px solid #38cfff!important;box-shadow:0 0 24px rgba(43,188,255,.4),inset 0 0 18px rgba(43,188,255,.16)}
+.wallet-nav .wallet-icon{display:block;width:31px;height:31px;margin:0 auto 3px;border-radius:50%;background:url('resonant-assets/wallet.jpeg') center/cover;border:1px solid #66e8ff;box-shadow:0 0 12px #2bbcff77}
+.nav button{transition:.18s transform,.18s box-shadow}
+.nav button:active{transform:scale(.96)}
+.wallet-page-hero{background:linear-gradient(90deg,rgba(3,12,22,.94),rgba(4,14,25,.64)),url('resonant-assets/wallet.jpeg') center/cover;border:1px solid #1d79ad;border-radius:22px;padding:22px;box-shadow:0 0 28px rgba(43,188,255,.2);min-height:170px}
+.wallet-page-hero .wallet-title{font-family:Georgia,serif;font-size:32px;margin:0 0 6px}.wallet-page-hero .wallet-balance{font-size:34px;font-weight:900;text-shadow:0 0 16px #8cecff55}
+.card-source{background:linear-gradient(145deg,rgba(4,13,24,.90),rgba(2,7,13,.95)),url('resonant-assets/card-source.jpeg') center/cover;border-color:#1c6a95}
+.game .game-art,.luxe-card.card-art{background:linear-gradient(145deg,rgba(5,15,27,.45),rgba(2,7,13,.55)),url('resonant-assets/card-source.jpeg') center/cover}
+.section-art{height:140px;border-radius:17px;background:linear-gradient(180deg,transparent,rgba(2,7,13,.8)),url('resonant-assets/card-source.jpeg') center/cover;border:1px solid #1c6a95;box-shadow:inset 0 0 35px rgba(43,188,255,.12)}
+@media(max-width:560px){.logo-home{width:98px;height:43px}.top{padding-left:10px}.topin{padding-left:104px}.hero{min-height:530px}.wallet-nav{transform:scale(1.09)}}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="top"><div class="topin">
+<button class="logo-home" aria-label="На главную" onclick="go('home')"><img src="resonant-assets/logo.jpeg" alt="Resonant Casino"></button>
+<div class="top-tools">
+<div class="lang"><button id="ruBtn" class="active" onclick="setLang('ru')">RU</button><button id="enBtn" onclick="setLang('en')">USA</button></div>
+<img class="avatar-mini" src="resonant-hero.jpeg" alt="Resonant avatar">
+<div class="status" id="mode">CHECKING…</div>
+</div></div></header>
+<main class="wrap">
+<div id="complianceNotice" class="notice">Статус аккаунта проверяется…</div>
+<section id="home" class="view active">
+<div class="hero"><div class="eyebrow">Resonant Casino</div><h1>Добро пожаловать<br>в Resonant Casino</h1><p>Твоя удача — в твоих руках.</p><div class="actions"><button class="btn hero-main-btn" onclick="go('games')">▶&nbsp; Играть</button></div></div>
+<div class="grid"><div class="card wallet-card"><div class="diamond">◇</div><div class="muted">Баланс</div><div class="balance" id="balance">—</div><div class="muted">Источник: серверный ledger</div></div><div class="card"><h3>Статус</h3><div class="row"><span>API</span><span class="pill ok" id="apiStatus">CHECKING</span></div><div class="row"><span>Real economy</span><span class="pill off" id="economyStatus">DISABLED</span></div><div class="row"><span>RTP</span><span class="pill ok">96.5%</span></div></div></div>
+</section>
+<section id="games" class="view"><h2>Игры</h2><p class="muted">Результат рассчитывается сервером. Клиент не является источником случайности.</p><div class="grid"><div class="card game"><div><div class="game-art">✦ 7 ✦</div><div class="tag">Classic</div><div class="title">Resonant Classic</div><div class="meta">RTP 96,5% · серверный результат</div></div><button class="btn" onclick="playGame('Resonant Classic')">Играть</button></div><div class="card game"><div><div class="game-art">◈</div><div class="tag">Arcade</div><div class="title">Neon Pulse</div><div class="meta">Серверный результат</div></div><button class="btn" onclick="playGame('Neon Pulse')">Играть</button></div></div></section>
+<section id="wallet" class="view"><h2>Кошелек</h2><div class="wallet-page-hero"><div class="wallet-title">Баланс</div><div class="wallet-balance" id="walletBalance">—</div><div class="muted">Доступный баланс</div></div><div class="grid" style="margin-top:12px"><div class="card card-source"><h3>Пополнить</h3><p class="muted">Пополнить игровой баланс</p><button class="btn" onclick="openDeposit()">Пополнить</button></div><div class="card card-source"><h3>Вывести</h3><p class="muted">Создать заявку на вывод</p><button class="btn secondary" onclick="openWithdraw()">Вывести</button></div><div class="card card-source"><h3>История</h3><p class="muted">Последние операции</p><button class="btn secondary" onclick="loadHistory()">Обновить</button></div><div class="card card-source"><h3>Реквизиты</h3><p class="muted">Данные для выплат</p><button class="btn secondary" onclick="alert('Реквизиты доступны после проверки аккаунта.')">Открыть</button></div></div><div class="card card-source" style="margin-top:12px"><h3>Последние транзакции</h3><div id="transactions" class="list"><div class="muted">Загрузка…</div></div></div><div id="walletMessage" class="notice">Перед реальными операциями система проверяет статус аккаунта.</div></section>
+<section id="safety" class="view"><h2>Безопасность</h2><p class="muted">Production-доступ открывается только после серверной проверки обязательных условий.</p><div class="list card"><div class="row"><span>Возраст</span><span class="pill off" id="ageStatus">—</span></div><div class="row"><span>KYC</span><span class="pill off" id="kycStatus">—</span></div><div class="row"><span>Юрисдикция</span><span class="pill off" id="jurisdictionStatus">—</span></div><div class="row"><span>Self-exclusion</span><span class="pill off" id="selfExclusionStatus">—</span></div><div class="row"><span>Deposit</span><span class="pill off" id="depositStatus">—</span></div><div class="row"><span>Withdrawal</span><span class="pill off" id="withdrawStatus">—</span></div></div><div class="notice">Проект должен использовать действующую платёжную интеграцию и обязательные проверки перед real-money операциями. Надпись о нелицензированном статусе не заменяет юридические требования.</div></section>
+<section id="profile" class="view"><h2>Профиль</h2><div class="card"><div class="row"><span>Telegram account</span><span class="pill" id="userName">—</span></div><div class="row"><span>Telegram ID</span><span id="userId">—</span></div></div></section>
+<div class="footer-brand">RESONANT · PLAY · VERIFY · STAY IN CONTROL</div></main>
+<nav class="nav"><div class="navin">
+<button data-go="home" class="active">⌂<br>Главная</button><button data-go="games">◈<br>Игры</button><button data-go="wallet" class="wallet-nav"><span class="wallet-icon"></span>Кошелек</button><button data-go="safety">✓<br>История</button><button data-go="profile">◉<br>Профиль</button>
+</div></nav>
+</div>
+<div id="modal" class="modal" onclick="if(event.target===this)closeModal()"><div class="sheet"><button class="close" onclick="closeModal()">✕</button><div id="sheet"></div></div></div>
+<script>
+const tg = window.Telegram?.WebApp;
+const API = '/api';
+let initData = tg?.initData || '';
+let state = { user:null, balance:0, guard:null };
+if(tg){ tg.ready(); tg.expand(); }
+function go(id){document.querySelectorAll('.view').forEach(x=>x.classList.toggle('active',x.id===id));document.querySelectorAll('[data-go]').forEach(x=>x.classList.toggle('active',x.dataset.go===id));scrollTo({top:0,behavior:'smooth'});if(id==='wallet')loadHistory();}
+document.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>go(b.dataset.go));
+function rub(v){return new Intl.NumberFormat('ru-RU',{style:'currency',currency:'RUB'}).format(Number(v||0));}
+function setPill(id, ok, text){const e=document.getElementById(id);if(!e)return;e.textContent=text||(ok?'READY':'BLOCKED');e.className='pill '+(ok?'ok':'off');}
+async function api(path, body){const r=await fetch(API+path,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({...body,init_data:initData})});let d={};try{d=await r.json()}catch{}if(!r.ok)throw new Error(d.detail||'API error');return d;}
+async function loadMe(){
+ try{
+  if(!initData) throw new Error('Откройте приложение из Telegram');
+  const d=await api('/me',{}); state=d;
+  document.getElementById('balance').textContent=rub(d.balance);document.getElementById('walletBalance').textContent=rub(d.balance);
+  const u=d.user||{};document.getElementById('userName').textContent=u.username?'@'+u.username:(u.first_name||'USER');document.getElementById('userId').textContent=u.id||'—';
+  const g=d.guard||{};setPill('ageStatus',g.age_verified);setPill('kycStatus',g.kyc_verified);setPill('jurisdictionStatus',g.jurisdiction_allowed);setPill('selfExclusionStatus',!g.self_excluded,g.self_excluded?'BLOCKED':'OK');setPill('depositStatus',g.deposit_enabled);setPill('withdrawStatus',g.withdrawal_enabled);
+  const real=d.real_economy!==false;document.getElementById('economyStatus').textContent=real?'ENABLED':'DISABLED';document.getElementById('economyStatus').className='pill '+(real?'ok':'off');document.getElementById('apiStatus').textContent='READY';document.getElementById('apiStatus').className='pill ok';
+  document.getElementById('mode').textContent=real?'REAL · GUARDED':'DEMO · GUARDED';
+  document.getElementById('complianceNotice').textContent=(g.age_verified&&g.kyc_verified&&g.jurisdiction_allowed&&!g.self_excluded)?'Проверки аккаунта пройдены. Доступные операции определяются сервером.':'Реальные операции заблокированы до прохождения обязательных проверок.';
+  await loadHistory();
+ }catch(e){document.getElementById('apiStatus').textContent='ERROR';document.getElementById('apiStatus').className='pill off';document.getElementById('complianceNotice').textContent=e.message;}
+}
+async function loadHistory(){try{const d=await api('/history',{});const el=document.getElementById('transactions');const rows=[...(d.payments||[]),...(d.withdrawals||[])];el.innerHTML=rows.length?rows.map(x=>`<div class="row"><span>${x.description||x.type||x.status||'Transaction'}</span><span>${x.amount_rub!=null?rub(x.amount_rub):x.amount_usdt!=null?x.amount_usdt+' USDT':''}</span></div>`).join(''):'<div class="muted">Нет операций</div>';}catch(e){document.getElementById('transactions').innerHTML='<div class="muted">'+e.message+'</div>';}}
+async function openDeposit(){const amount=prompt('Сумма пополнения в USDT');if(!amount)return;try{const d=await api('/deposit',{amount_usdt:Number(amount)});const url=d.invoice?.pay_url;if(url)location.href=url;else alert('Платёжная ссылка не получена.');}catch(e){alert(e.message);}}
+async function openWithdraw(){const amount=prompt('Сумма вывода в RUB');if(!amount)return;const details=prompt('Реквизиты для выплаты');if(!details)return;try{const d=await api('/withdraw',{amount_rub:Number(amount),payout_details:details});alert('Заявка #'+(d.withdrawal?.id||'создана'));await loadMe();}catch(e){alert(e.message);}}
+async function playGame(name){try{await api('/game/round',{game:name,stake_rub:1});}catch(e){alert(e.message);}}
+loadMe();
+</script>
+</body></html>
