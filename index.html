@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Resonant Casino</title>
+<style>
+:root{--bg:#070b12;--panel:#0d1420;--panel2:#111b29;--line:#1d2a3a;--text:#f4f7fb;--muted:#91a0b4;--a:#57d6ff;--a2:#9a7cff;--ok:#5ee6a8;--warn:#ffd166;--danger:#ff6b7a;--r:18px}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(900px 500px at 80% -10%,#172641 0,transparent 60%),var(--bg);color:var(--text);font:15px/1.45 Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+button{font:inherit;color:inherit}.app{min-height:100vh;padding-bottom:86px}.top{position:sticky;top:0;z-index:10;background:rgba(7,11,18,.82);backdrop-filter:blur(18px);border-bottom:1px solid var(--line);padding:14px 16px}.topin{max-width:980px;margin:auto;display:flex;align-items:center;justify-content:space-between}.brand{font-weight:800;letter-spacing:.4px}.brand span{color:var(--a)}.status{font-size:11px;color:var(--ok);border:1px solid #244a3a;border-radius:999px;padding:5px 9px}.wrap{max-width:980px;margin:auto;padding:18px 16px}.view{display:none}.view.active{display:block}.hero{padding:24px;border:1px solid var(--line);border-radius:24px;background:linear-gradient(135deg,#101b2b,#0b111b);box-shadow:0 18px 60px #0005}.eyebrow{color:var(--a);font-size:12px;text-transform:uppercase;letter-spacing:1.5px;font-weight:800}.hero h1{font-size:34px;line-height:1.05;margin:10px 0}.hero p{color:var(--muted);max-width:680px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:14px}.card{background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:var(--r);padding:16px}.card h3{margin:0 0 7px}.muted{color:var(--muted)}.balance{font-size:28px;font-weight:800;margin:8px 0}.btn{border:0;border-radius:13px;padding:11px 14px;background:linear-gradient(135deg,var(--a),#7ba7ff);color:#061018;font-weight:800;cursor:pointer}.btn.secondary{background:#162232;color:var(--text);border:1px solid var(--line)}.btn:disabled{opacity:.45;cursor:not-allowed}.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}.game{min-height:170px;display:flex;flex-direction:column;justify-content:space-between}.game .tag{font-size:11px;color:var(--a);text-transform:uppercase}.game .title{font-size:21px;font-weight:800}.game .meta{color:var(--muted);font-size:13px}.list{display:grid;gap:9px}.row{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}.row:last-child{border-bottom:0}.pill{padding:4px 8px;border-radius:999px;font-size:11px;background:#172334;color:var(--muted)}.pill.ok{color:var(--ok);background:#103123}.pill.off{color:var(--warn);background:#32280f}.nav{position:fixed;bottom:0;left:0;right:0;z-index:20;background:rgba(7,11,18,.92);backdrop-filter:blur(18px);border-top:1px solid var(--line);padding:9px 8px calc(9px + env(safe-area-inset-bottom));display:flex;justify-content:center}.navin{width:min(980px,100%);display:grid;grid-template-columns:repeat(5,1fr);gap:5px}.nav button{background:none;border:0;color:var(--muted);padding:8px 4px;border-radius:12px;font-size:11px;cursor:pointer}.nav button.active{background:#111d2c;color:var(--a)}.notice{border-left:3px solid var(--warn);padding:11px 13px;background:#19160d;border-radius:10px;color:#d9cfaa;margin-top:14px}.modal{position:fixed;inset:0;display:none;align-items:flex-end;justify-content:center;background:#0009;z-index:30}.modal.show{display:flex}.sheet{width:min(680px,100%);background:#0d1420;border:1px solid var(--line);border-radius:24px 24px 0 0;padding:20px;max-height:85vh;overflow:auto}.close{float:right;border:0;background:#172232;border-radius:10px;padding:8px;cursor:pointer}@media(min-width:700px){.modal{align-items:center}.sheet{border-radius:24px}.hero h1{font-size:46px}}@media(max-width:560px){.grid{grid-template-columns:1fr}.hero{padding:20px}.hero h1{font-size:31px}}
+
+:root{--ice:#dff8ff;--blue:#2bbcff;--deep:#030812;--glass:rgba(7,16,29,.72);--glow:0 0 28px rgba(43,188,255,.24)}
+body{background:radial-gradient(circle at 50% -10%,#15365f 0,#06101e 34%,#02050b 72%);overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:linear-gradient(rgba(255,255,255,.015) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.012) 1px,transparent 1px);background-size:42px 42px;mask-image:linear-gradient(to bottom,#000,transparent 85%);z-index:-1}
+.brand{font-family:Georgia,serif;font-size:18px;letter-spacing:1.5px;text-shadow:0 0 14px #7de5ff}
+.top{border-bottom-color:#153a5b}.topin{gap:10px}.top-tools{display:flex;align-items:center;gap:8px}
+.lang{display:flex;padding:3px;border:1px solid #17476b;border-radius:999px;background:#071322}.lang button{border:0;background:transparent;color:#7890a7;border-radius:999px;padding:5px 8px;font-size:10px;font-weight:800}.lang button.active{background:#12395b;color:#e8fbff;box-shadow:inset 0 0 14px #2bbcff22}
+.avatar-mini{width:34px;height:34px;border-radius:50%;object-fit:cover;border:1px solid #4ad6ff;box-shadow:0 0 16px #2bbcff55}
+.hero{position:relative;overflow:hidden;min-height:430px;background:linear-gradient(180deg,rgba(2,9,18,.22),rgba(3,9,17,.96)),url('resonant-hero.jpeg') center 25%/cover;border-color:#216087;box-shadow:var(--glow)}
+.hero:after{content:"";position:absolute;inset:auto 0 0;height:55%;background:linear-gradient(transparent,#050a12);pointer-events:none}
+.hero>*{position:relative;z-index:1}.hero .eyebrow{margin-top:150px}.hero h1{font-family:Georgia,serif;text-shadow:0 2px 25px #000,0 0 15px #a8efff}.hero p{color:#d1e2f0}
+.luxe-card{position:relative;overflow:hidden;background:linear-gradient(145deg,rgba(12,29,47,.92),rgba(4,11,20,.94));border:1px solid #1b638e;box-shadow:inset 0 0 0 1px #ffffff05,var(--glow)}
+.luxe-card:before{content:"";position:absolute;inset:-40% -20%;background:radial-gradient(circle,#55dfff18,transparent 58%);pointer-events:none}
+.section-title{display:flex;align-items:end;justify-content:space-between;gap:12px;margin-top:22px}.section-title h2{margin:0;font-family:Georgia,serif}
+.icon-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}.icon-tile{display:flex;flex-direction:column;align-items:center;gap:7px;padding:12px 6px;border:1px solid #17496b;border-radius:16px;background:linear-gradient(180deg,#0c1c2d,#07101c);cursor:pointer}.icon-tile span:last-child{font-size:10px;color:#b6c9da}.sigil{width:42px;height:42px;display:grid;place-items:center;border-radius:14px;color:#dffaff;border:1px solid #4ad6ff;background:radial-gradient(circle,#16486b,#07111e);box-shadow:0 0 20px #2bbcff33;font-size:19px}
+.game{min-height:185px;background:linear-gradient(150deg,#10253a,#050b13);border-color:#1a5d83;box-shadow:inset 0 0 30px #2bbcff09}
+.game .tag{color:#5ee4ff}.game .title{font-family:Georgia,serif}.game-art{height:76px;border-radius:13px;margin-bottom:10px;background:radial-gradient(circle at 50% 40%,#1e80b4,#071322 58%,#02060c);border:1px solid #2b91c1;display:grid;place-items:center;font-size:30px;box-shadow:inset 0 0 24px #2bbcff18}
+.nav{background:rgba(2,7,14,.94);border-top-color:#164666}.nav button.active{background:linear-gradient(180deg,#0d2d48,#0a1725);color:#7deaff;box-shadow:inset 0 0 18px #2bbcff18}
+.balance{font-family:Georgia,serif;text-shadow:0 0 16px #8cecff55}.notice{border-left-color:#46d8ff;background:#071d2b;color:#c9e8f2}
+.profile-head{display:flex;align-items:center;gap:14px}.profile-avatar{width:72px;height:72px;border-radius:50%;object-fit:cover;border:2px solid #72e9ff;box-shadow:0 0 24px #2bbcff55}
+@media(max-width:560px){.icon-grid{grid-template-columns:repeat(4,1fr)}.hero{min-height:500px}.hero .eyebrow{margin-top:180px}}
+
+/* Resonant visual design system */
+:root{
+ --silver:#e9fbff;--cyan:#55ddff;--cyan2:#1c8fd0;--navy:#061120;
+ --royal:#0a2340;--glass2:rgba(6,17,31,.82);--gold:#b8d8ff;
+}
+.top{box-shadow:0 8px 35px rgba(0,0,0,.28)}
+.brand{font-family:Georgia,serif;font-size:19px;letter-spacing:2px}
+.avatar-mini{background:#06111f}
+.hero{border-radius:26px}
+.hero .eyebrow{letter-spacing:2.4px}
+.hero h1{font-size:clamp(34px,7vw,58px);letter-spacing:-1.5px}
+.hero .hero-mark{
+ width:58px;height:58px;border-radius:18px;display:grid;place-items:center;
+ border:1px solid #6ce9ff;background:radial-gradient(circle at 35% 25%,#328dc0,#071426 68%);
+ box-shadow:0 0 35px #2bbcff40, inset 0 0 20px #9ff2ff15;font-size:26px;margin-bottom:12px
+}
+.quick-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-top:14px}
+.quick{border:1px solid #174b70;background:linear-gradient(180deg,#0d2033,#07111d);border-radius:17px;padding:12px 6px;text-align:center;cursor:pointer;box-shadow:inset 0 0 20px #2bbcff08}
+.quick:hover{border-color:#3ccfff;transform:translateY(-1px)}
+.quick .sigil{margin:auto;width:44px;height:44px;border-radius:50%;font-size:18px}
+.quick small{display:block;margin-top:7px;color:#b7cad9;font-size:10px}
+.card.luxe-card{border-radius:20px}
+.lobby-badge{display:inline-flex;align-items:center;gap:6px;padding:5px 9px;border-radius:999px;border:1px solid #195679;background:#071726;color:#81eaff;font-size:10px;letter-spacing:.7px}
+.stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:12px}
+.stat{padding:12px;border:1px solid #153d5b;border-radius:14px;background:#07121f}
+.stat b{display:block;font-family:Georgia,serif;font-size:17px}.stat span{font-size:10px;color:#7f95a8}
+.game .game-art{height:88px;border-radius:15px;position:relative;overflow:hidden}
+.game .game-art:after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,transparent 40%,#a9f3ff15)}
+.game .game-badge{position:absolute;top:8px;right:8px;z-index:2;padding:4px 7px;border-radius:999px;background:#061321cc;border:1px solid #2cbfff;color:#9eeeff;font-size:9px}
+.wallet-card{background:radial-gradient(circle at 90% 10%,#164e72 0,transparent 28%),linear-gradient(145deg,#0d2033,#06101c)}
+.wallet-card .diamond{font-size:34px;filter:drop-shadow(0 0 14px #4cdcff)}
+.security-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px}
+.security-chip{padding:10px 6px;text-align:center;border:1px solid #173d59;border-radius:13px;background:#06111d;color:#a9c2d4;font-size:9px}
+.security-chip b{display:block;color:#72e7ff;font-size:15px;margin-bottom:3px}
+.footer-brand{text-align:center;color:#5f7890;font:12px Georgia,serif;letter-spacing:2px;padding:22px 0}
+@media(max-width:560px){.quick-grid{grid-template-columns:repeat(4,1fr)}.stat-grid{grid-template-columns:1fr 1fr 1fr}.security-row{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="top"><div class="topin">
+<div class="brand">RESONANT</div>
+<div class="top-tools">
+<div class="lang"><button id="ruBtn" class="active" onclick="setLang('ru')">RU</button><button id="enBtn" onclick="setLang('en')">USA</button></div>
+<img class="avatar-mini" src="resonant-hero.jpeg" alt="Resonant avatar">
+<div class="status" id="mode">DEMO · SERVER READY</div>
+</div></div></header>
+<main class="wrap">
+
+<div id="lobbyTools" class="card luxe-card" style="margin-bottom:14px">
+<div class="profile-head">
+<img class="profile-avatar" src="resonant-hero.jpeg" alt="Resonant profile">
+<div style="flex:1">
+<div class="lobby-badge">✦ RESONANT MEMBER</div>
+<h3 style="margin:7px 0 2px" data-i18n="welcome">Добро пожаловать в Resonant</h3>
+<div class="muted" data-i18n="level">Уровень 12 · Premium Member</div>
+</div>
+</div>
+<div class="stat-grid">
+<div class="stat"><b>12</b><span data-i18n="level_short">УРОВЕНЬ</span></div>
+<div class="stat"><b>0</b><span data-i18n="rounds">РАУНДОВ</span></div>
+<div class="stat"><b>100%</b><span data-i18n="control">КОНТРОЛЬ</span></div>
+</div>
+<div class="quick-grid">
+<button class="quick" onclick="go('wallet')"><span class="sigil">◇</span><small data-i18n="wallet">Кошелёк</small></button>
+<button class="quick" onclick="go('games')"><span class="sigil">♜</span><small data-i18n="games">Игры</small></button>
+<button class="quick" onclick="go('safety')"><span class="sigil">♢</span><small data-i18n="safety">Безопасность</small></button>
+<button class="quick" onclick="go('profile')"><span class="sigil">♕</span><small data-i18n="profile">Профиль</small></button>
+</div>
+</div>
+<section id="home" class="view active"> class="view active">
+<div class="hero"><div class="hero-mark">✦</div><div class="eyebrow">Resonant Casino</div><h1>Play. Verify.<br>Stay in control.</h1><p>Premium Telegram Mini App shell with server-authoritative game flow, wallet ledger and responsible-gaming controls. RU / USA localization · real-money mode stays disabled until required integrations and approvals are connected.</p><div class="actions"><button class="btn" onclick="go('games')">Open games</button><button class="btn secondary" onclick="go('safety')">Safety center</button></div></div>
+<div class="grid"><div class="card wallet-card"><div class="diamond">◇</div><div class="muted">Demo balance</div><div class="balance">€1,000.00</div><div class="muted">No real-money transactions</div></div><div class="card"><h3>Platform status</h3><div class="row"><span>Game engine</span><span class="pill ok">READY</span></div><div class="row"><span>Ledger</span><span class="pill ok">READY</span></div><div class="row"><span>Payments</span><span class="pill off">NOT CONNECTED</span></div></div></div>
+<div class="security-row"><div class="security-chip"><b>✦</b>FAIR PLAY</div><div class="security-chip"><b>♢</b>SAFETY</div><div class="security-chip"><b>♕</b>PREMIUM</div><div class="security-chip"><b>◈</b>SECURE</div></div><div class="notice">Demo/staging mode. Deposits and withdrawals are intentionally locked in this release candidate. Visual direction: ice-blue chrome, royal navy, diamonds, roses and Resonant crest.</div>
+</section>
+<section id="games" class="view"><h2>Games</h2><p class="muted">Server-authoritative round flow. Demo only.</p><div class="grid">
+<div class="card game"><div><div class="game-art"><span class="game-badge">FEATURED</span>✦ 7 ✦</div><div class="tag">Classic</div><div class="title">Resonant Classic</div><div class="meta">RTP information · round history · Fair Play</div></div><button class="btn" onclick="openGame('Resonant Classic')">Play demo</button></div>
+<div class="card game"><div><div class="game-art"><span class="game-badge">ARCADE</span>◈</div><div class="tag">Arcade</div><div class="title">Neon Pulse</div><div class="meta">Fast rounds · deterministic server result</div></div><button class="btn" onclick="openGame('Neon Pulse')">Play demo</button></div>
+<div class="card game"><div><div class="game-art"><span class="game-badge">TABLE</span>♛</div><div class="tag">Numbers</div><div class="title">Orbit 7</div><div class="meta">Rules · RTP · result history</div></div><button class="btn" onclick="openGame('Orbit 7')">Play demo</button></div>
+<div class="card"><h3>More games</h3><p class="muted">Game catalog API is ready to be connected to additional certified game modules.</p></div>
+</div></section>
+<section id="wallet" class="view"><h2>Wallet</h2><div class="card wallet-card"><div class="diamond">◇</div><div class="muted">Demo balance</div><div class="balance">€1,000.00</div><div class="actions"><button class="btn" disabled>Deposit</button><button class="btn secondary" disabled>Withdraw</button></div><div class="notice">Payment provider is NOT CONNECTED. No payment request is sent from the client.</div></div><div class="card" style="margin-top:12px"><h3>Transactions</h3><div class="row"><span>Demo credit</span><span>+€1,000.00</span></div></div></section>
+<section id="safety" class="view"><h2>Safety & Responsible Gaming</h2><p class="muted">Controls are shown as integration states, not as proof of regulatory connection.</p><div class="list card">
+<div class="row"><span>KYC / age verification</span><span class="pill off">NOT CONNECTED</span></div><div class="row"><span>OASIS</span><span class="pill off">NOT CONNECTED</span></div><div class="row"><span>LUGAS</span><span class="pill off">NOT CONNECTED</span></div><div class="row"><span>Deposit limits</span><span class="pill ok">UI READY</span></div><div class="row"><span>Stake limits</span><span class="pill ok">UI READY</span></div><div class="row"><span>Loss limits</span><span class="pill ok">UI READY</span></div><div class="row"><span>Self-exclusion</span><span class="pill ok">UI READY</span></div></div><div class="card" style="margin-top:12px"><h3>Responsible Gaming</h3><p class="muted">Before real-money play, identity/age, exclusion, limits and jurisdiction-specific checks must be enforced server-side.</p></div></section>
+<section id="profile" class="view"><h2>Profile</h2><div class="card"><div class="row"><span>Telegram account</span><span class="pill">DEMO USER</span></div><div class="row"><span>KYC</span><span class="pill off">NOT CONNECTED</span></div><div class="row"><span>Game history</span><span>0 rounds</span></div><div class="row"><span>Transactions</span><span>1 demo</span></div></div><div class="grid"><div class="card"><h3>Limits</h3><p class="muted">Deposit · stake · loss</p><button class="btn secondary" onclick="alert('Demo UI: limits editor')">Manage</button></div><div class="card"><h3>Self-exclusion</h3><p class="muted">Control access to play.</p><button class="btn secondary" onclick="alert('Demo UI: self-exclusion flow')">Open</button></div></div></section>
+<div class="footer-brand">RESONANT · PLAY · WIN · RESONATE</div></main>
+<nav class="nav"><div class="navin">
+<button data-go="home" class="active">⌂<br>Home</button><button data-go="games">◈<br>Games</button><button data-go="wallet">◫<br>Wallet</button><button data-go="safety">✓<br>Safety</button><button data-go="profile">◉<br>Profile</button>
+</div></nav>
+</div>
+<div id="modal" class="modal" onclick="if(event.target===this)closeModal()"><div class="sheet"><button class="close" onclick="closeModal()">✕</button><div id="sheet"></div></div></div>
+<script>
+const REAL_ECONOMY=false;
+function go(id){document.querySelectorAll('.view').forEach(x=>x.classList.toggle('active',x.id===id));document.querySelectorAll('[data-go]').forEach(x=>x.classList.toggle('active',x.dataset.go===id));scrollTo({top:0,behavior:'smooth'})}
+document.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>go(b.dataset.go));
+function openGame(name){document.getElementById('sheet').innerHTML=`<div class="eyebrow">Demo game</div><h2>${name}</h2><p class="muted">Rules and round presentation are available in the RC shell. The outcome is demo-only and carries no monetary value.</p><div class="card"><div class="row"><span>Result source</span><span class="pill ok">SERVER</span></div><div class="row"><span>Real money</span><span class="pill off">DISABLED</span></div><div class="row"><span>Fair Play</span><span class="pill ok">AVAILABLE</span></div></div><div class="actions"><button class="btn" onclick="demoRound()">Run demo round</button></div><p id="round" class="muted"></p>`;document.getElementById('modal').classList.add('show')}
+function demoRound(){const vals=['WIN','LOSS','PUSH'];document.getElementById('round').textContent='Demo result: '+vals[Math.floor(Math.random()*vals.length)]+' · ledger unchanged'}
+function closeModal(){document.getElementById('modal').classList.remove('show')}
+
+const I18N={
+ru:{player:"ИГРОК",welcome:"Добро пожаловать в Resonant",level:"Уровень 12 · Premium Member",level_short:"УРОВЕНЬ",rounds:"РАУНДОВ",control:"КОНТРОЛЬ",wallet:"Кошелёк",games:"Игры",safety:"Безопасность",profile:"Профиль"},
+en:{player:"PLAYER",welcome:"Welcome to Resonant",level:"Level 12 · Premium Member",level_short:"LEVEL",rounds:"ROUNDS",control:"CONTROL",wallet:"Wallet",games:"Games",safety:"Safety",profile:"Profile"}
+};
+function setLang(lang){
+ document.documentElement.lang=lang==='ru'?'ru':'en';
+ document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.dataset.i18n;if(I18N[lang][k])el.textContent=I18N[lang][k]});
+ document.getElementById('ruBtn').classList.toggle('active',lang==='ru');
+ document.getElementById('enBtn').classList.toggle('active',lang==='en');
+ localStorage.setItem('resonant_lang',lang);
+}
+setLang(localStorage.getItem('resonant_lang')||'ru');
+</script>
+</body></html>
