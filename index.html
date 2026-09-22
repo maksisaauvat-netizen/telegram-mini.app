@@ -134,6 +134,19 @@ button:disabled{opacity:.45;cursor:default}
 .cards{display:flex;justify-content:center;gap:7px;flex-wrap:wrap;margin:11px 0}
 .cardface{min-width:47px;padding:14px 10px;background:#f2f3ef;color:#11161a;border-radius:8px;font-weight:900;text-align:center;box-shadow:0 4px 12px #0006}
 @media(max-width:390px){.reel{height:205px}.cell{height:64px;font-size:22px}.game{min-height:120px}.arc{height:150px}.wheel{width:410px;height:410px}}
+
+/* Resonant shell / profile / wallet */
+.hero-banner{margin:10px 0 12px;border:1px solid #2a3640;border-radius:18px;overflow:hidden;background:linear-gradient(135deg,#0a1118,#102235);padding:18px;text-align:center;box-shadow:0 18px 55px #0008}
+.hero-banner .logo{font-size:27px;font-weight:1000;letter-spacing:2px}.hero-banner .logo span{color:#73d8ff}.hero-banner p{margin:5px 0 0;color:#8d9da8}
+.shell-view{display:none}.shell-view.active{display:block}
+.profile-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:7px;margin-top:10px}.stat-card{padding:10px;border:1px solid #202a32;background:#0b1015;border-radius:12px}.stat-card small{display:block;color:#71808b;font-size:9px}.stat-card b{display:block;margin-top:4px;font-size:15px}
+.history-row{padding:9px 0;border-bottom:1px solid #1c242a;font-size:11px}.history-row:last-child{border-bottom:0}
+.bottom-nav{position:fixed;z-index:50;left:50%;bottom:8px;transform:translateX(-50%);width:min(520px,calc(100% - 14px));display:grid;grid-template-columns:.85fr 1fr 1.15fr 1fr 1fr;gap:4px;padding:5px;border:1px solid #242d35;border-radius:17px;background:#080c10eF;backdrop-filter:blur(18px);box-shadow:0 15px 50px #000b}
+.bottom-nav button{border:0;background:transparent;border-radius:12px;padding:8px 3px;color:#798791;font-size:10px;font-weight:800}.bottom-nav button.active{background:#14212a;color:#eaf7ff}.bottom-nav .wallet-tab{font-size:11px;background:linear-gradient(180deg,#bfeeff,#4b8aa5);color:#071015}
+.drawer{position:fixed;inset:0;z-index:70;display:none;background:#000b}.drawer.active{display:block}.drawer-panel{width:min(320px,84%);height:100%;background:#090d11;border-right:1px solid #29343d;padding:18px;box-shadow:20px 0 50px #000}.drawer button{width:100%;margin:4px 0;text-align:left}
+.admin-table{font-size:10px;max-height:360px;overflow:auto}.admin-table div{padding:7px 0;border-bottom:1px solid #1b242b}
+body{padding-bottom:78px}
+
 </style>
 </head>
 <body>
@@ -144,6 +157,7 @@ button:disabled{opacity:.45;cursor:default}
 </header>
 
 <section id="lobby" class="view active">
+  <div class="hero-banner"><div class="logo">RESONANT <span>CASINO</span></div><p>Играй и побеждай</p></div>
   <div class="card lobby-card">
     <div class="section-title">Игры</div>
     <div class="muted">SLOT · x50 · CRASH · Blackjack · Mines</div>
@@ -169,7 +183,63 @@ button:disabled{opacity:.45;cursor:default}
     <div id="status" class="status"></div>
   </div>
 </section>
+
+<section id="walletView" class="shell-view">
+  <div class="card">
+    <div class="section-title">💰 Кошелек</div>
+    <div class="muted">Пополнение, вывод и история операций</div>
+    <div class="profile-grid">
+      <div class="stat-card"><small>BALANCE</small><b id="walletBalance">0 ₽</b></div>
+      <div class="stat-card"><small>ОБОРОТ</small><b id="walletTurnover">0 ₽</b></div>
+    </div>
+    <div class="row" style="margin-top:10px"><button class="btn primary" style="flex:1" onclick="walletDeposit()">Пополнить</button><button class="btn" style="flex:1" onclick="walletWithdraw()">Вывод</button></div>
+  </div>
+  <div class="card" style="margin-top:10px"><div class="section-title">История</div><div id="walletHistory" class="history-row muted">Загрузка…</div></div>
+</section>
+
+<section id="profileView" class="shell-view">
+  <div class="card">
+    <div class="section-title">👤 | PROFILE</div>
+    <div id="profileId" class="muted" style="margin-top:4px">ID: —</div>
+    <div class="profile-grid" id="profileStats"></div>
+  </div>
+  <div class="card" style="margin-top:10px"><div class="section-title">История игр</div><div id="gameHistory" class="history-row muted">Загрузка…</div></div>
+</section>
+
+<section id="bonusView" class="shell-view">
+  <div class="card">
+    <div class="section-title">🎁 | BONUS</div>
+    <p class="muted">Бонусы и реферальная система</p>
+    <div class="result">Реферальная программа синхронизируется с аккаунтом Telegram.</div>
+    <button class="btn primary wide" onclick="openReferral()">Реферальная ссылка</button>
+  </div>
+</section>
+
+<div id="drawer" class="drawer" onclick="closeDrawer(event)">
+  <div class="drawer-panel" onclick="event.stopPropagation()">
+    <div class="section-title">☰ RESONANT</div>
+    <button class="btn" onclick="closeDrawer();showShell('lobby')">🎰 Главная</button>
+    <button class="btn" onclick="closeDrawer();showShell('wallet')">💰 Кошелек</button>
+    <button class="btn" onclick="closeDrawer();showShell('bonus')">🎁 Бонусы</button>
+    <button class="btn" onclick="closeDrawer();showShell('profile')">👤 Профиль</button>
+    <button class="btn" onclick="closeDrawer();openGame('upgrader')">⚡ Upgrader</button>
+    <button class="btn" onclick="closeDrawer();openGame('crash')">🚀 Crash</button>
+    <button class="btn" onclick="closeDrawer();openGame('slot')">🎰 Slots</button>
+    <button class="btn" onclick="closeDrawer();openGame('mines')">💣 Mines</button>
+    <button class="btn" onclick="closeDrawer();openGame('x50')">🎡 x50 / Diamond</button>
+    <div id="adminDrawer" style="display:none"><button class="btn" onclick="closeDrawer();adminView()">🛠 ADMIN PANEL</button></div>
+  </div>
 </div>
+
+</div>
+
+<nav class="bottom-nav">
+  <button onclick="openDrawer()">☰<br>Меню</button>
+  <button onclick="showShell('lobby')" class="active">🎰<br>Главная</button>
+  <button class="wallet-tab" onclick="showShell('wallet')">💰<br>Кошелек</button>
+  <button onclick="showShell('bonus')">🎁<br>Бонусы</button>
+  <button onclick="showShell('profile')">👤<br>Профиль</button>
+</nav>
 
 <script>
 const tg=window.Telegram?.WebApp;tg?.ready();tg?.expand();
@@ -378,7 +448,72 @@ async function mineOpen(i){try{const d=await api('/api/game/action',{action:'ope
 async function mineCash(){try{const d=await api('/api/game/action',{action:'cashout'});mineFinish(d)}catch(e){setStatus(e.message,true)}}
 function mineFinish(d){const ms=new Set(d.mines||[]),op=new Set(d.opened||[]);$('body').innerHTML=`<div class="minegrid">${Array.from({length:25},(_,i)=>`<button class="mine ${ms.has(i)?'bomb':op.has(i)?'open':''}">${ms.has(i)?'💣':op.has(i)?'◆':'·'}</button>`).join('')}</div><div class="result ${d.won?'win':'lose'}">${d.won?'🎉 x'+d.multiplier:'💥 Мина'}</div><button class="btn primary wide" style="margin-top:8px" onclick="minesStart()">ЕЩЁ РАЗ</button>`}
 
-async function me(){try{const d=await api('/api/me');$('balance').textContent=money(d.balance)}catch(e){}}
+
+function showShell(name){
+  stopCrash();spinBusy=false;
+  ['lobby','wallet','profile','bonus'].forEach(v=>{
+    const el=$(v==='lobby'?'lobby':v+'View');
+    if(el) el.classList.toggle('active',v===name);
+  });
+  $('gameView').classList.remove('active');
+  document.querySelectorAll('.bottom-nav button').forEach((b,i)=>b.classList.toggle('active',(name==='lobby'&&i===1)||(name==='wallet'&&i===2)||(name==='bonus'&&i===3)||(name==='profile'&&i===4)));
+  if(name==='wallet') loadWallet();
+  if(name==='profile') loadProfile();
+}
+function openDrawer(){ $('drawer').classList.add('active'); }
+function closeDrawer(e){ if(!e || e.target.id==='drawer') $('drawer').classList.remove('active'); }
+async function loadProfile(){
+  try{
+    const d=await api('/api/me'); const s=d.stats||{};
+    $('profileId').textContent='ID: '+(d.user?.id||'—');
+    $('profileStats').innerHTML=[
+      ['BALANCE',money(d.balance)+' ₽'],['ИГРЫ',s.games||0],['ПОБЕДЫ',s.wins||0],['ПОРАЖЕНИЯ',s.losses||0],
+      ['WINRATE',(s.winrate||0)+'%'],['СТАВКИ',money(s.turnover)+' ₽'],['ВЫИГРАНО',money(s.payouts)+' ₽'],['MAX WIN',money(s.max_win||0)+' ₽']
+    ].map(x=>`<div class="stat-card"><small>${x[0]}</small><b>${x[1]}</b></div>`).join('');
+    if(d.is_admin) $('adminDrawer').style.display='block';
+    const h=await api('/api/history');
+    $('gameHistory').innerHTML=(h.games||[]).slice(0,15).map(x=>`<div class="history-row">${x.game.toUpperCase()} · ${x.stake} ₽ · ${x.result} · ${x.payout} ₽</div>`).join('')||'<span class="muted">История пуста</span>';
+  }catch(e){$('profileId').textContent=e.message}
+}
+async function loadWallet(){
+  try{
+    const d=await api('/api/me'); $('walletBalance').textContent=money(d.balance)+' ₽';$('walletTurnover').textContent=money(d.stats?.turnover||0)+' ₽';
+    const h=await api('/api/history');
+    const p=(h.payments||[]).map(x=>`<div class="history-row">Пополнение #${x.id} · ${x.amount_rub} ₽ · ${x.status}</div>`);
+    const w=(h.withdrawals||[]).map(x=>`<div class="history-row">Вывод #${x.id} · ${x.amount_rub} ₽ · ${x.status}</div>`);
+    $('walletHistory').innerHTML=p.concat(w).join('')||'<span class="muted">История пуста</span>';
+  }catch(e){$('walletHistory').textContent=e.message}
+}
+async function walletDeposit(){
+  const amount=prompt('Сумма пополнения в USDT:','10'); if(!amount)return;
+  try{const d=await api('/api/deposit',{amount_usdt:Number(amount)});if(d.invoice?.pay_url) location.href=d.invoice.pay_url;else setStatus('Crypto Pay не настроен',true)}catch(e){alert(e.message)}
+}
+async function walletWithdraw(){
+  const amount=prompt('Сумма вывода в ₽:','100');if(!amount)return;
+  const details=prompt('Реквизиты/данные выплаты:');if(!details)return;
+  try{await api('/api/withdraw',{amount_rub:Math.round(Number(amount)),payout_details:details});await loadWallet();alert('Заявка создана')}catch(e){alert(e.message)}
+}
+function openReferral(){
+  const id=tg?.initDataUnsafe?.user?.id||'USER_ID';
+  alert('Ваша реферальная ссылка:\nhttps://t.me/'+(''+location.hostname).replace(/^www\./,'')+'?start=ref_'+id);
+}
+async function adminView(){
+  try{
+    const d=await api('/api/admin/overview');
+    $('lobby').classList.remove('active');$('gameView').classList.remove('active');
+    $('walletView').classList.remove('active');$('bonusView').classList.remove('active');$('profileView').classList.add('active');
+    $('profileId').textContent='🛠 ADMIN PANEL';
+    $('profileStats').innerHTML=`<div class="admin-table" style="grid-column:1/-1">
+      <div><b>Пользователи</b>: ${d.users?.length||0}</div>
+      <div><b>Пополнения</b>: ${d.payments?.length||0}</div>
+      <div><b>Заявки на вывод</b>: ${d.withdrawals?.length||0}</div>
+      <div><b>Логи</b>: ${d.logs?.length||0}</div>
+      ${(d.users||[]).slice(0,20).map(u=>`<div>${u.user_id} · ${u.balance_rub} ₽</div>`).join('')}
+    </div>`;
+  }catch(e){alert(e.message)}
+}
+
+async function me(){try{const d=await api('/api/me');$('balance').textContent=money(d.balance);if(d.is_admin)$('adminDrawer').style.display='block'}catch(e){}}
 me();
 </script>
 </body>
