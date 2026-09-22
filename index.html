@@ -147,23 +147,24 @@ button:disabled{opacity:.45;cursor:default}
 .admin-input{width:100%;box-sizing:border-box;background:#0d1319;border:1px solid #28333b;color:#fff;border-radius:10px;padding:8px;margin-top:4px}.admin-table{font-size:10px;max-height:360px;overflow:auto}.admin-table div{padding:7px 0;border-bottom:1px solid #17304a}
 body{padding-bottom:78px}
 
+.ce{width:1.05em;height:1.05em;vertical-align:-0.16em;display:inline-block;object-fit:contain}.ce.currency{width:1em;height:1em;vertical-align:-0.12em}
 </style>
 </head>
 <body>
 <div class="app">
 <header class="topbar">
   <div class="brand">RESONANT <span>CASINO</span></div>
-  <div class="balance"><div><small>BALANCE</small><strong id="balance">0</strong> ₽</div></div>
+  <div class="balance"><div><small>BALANCE</small><strong id="balance">0</strong> <img class="ce currency" src="/custom-emoji/5231449120635370684" alt="₽"></div></div>
 </header>
 
 <section id="lobby" class="view active">
   <div class="hero-banner"><img src="/start.jpg" alt="Resonant Casino"><div class="logo">RESONANT <span>CASINO</span></div><p>Играй и побеждай</p></div>
-  <div class="card lobby-card"><div class="section-title">🎰 GAMES</div><div class="muted">Все режимы синхронизированы с Telegram-ботом</div></div>
+  <div class="card lobby-card"><div class="section-title"><img class="ce" src="/custom-emoji/5384509325429463744" alt="🎰"> GAMES</div><div class="muted">Все режимы синхронизированы с Telegram-ботом</div></div>
   <div class="games">
-    <button class="game" onclick="openGame('slot')"><span class="ico">🎰</span><b>SLOTS</b><small>5×3 · 16 линий</small></button>
-    <button class="game" onclick="openGame('mines')"><span class="ico">💣</span><b>MINES</b><small>5×5 · 2–24 мины</small></button>
-    <button class="game" onclick="openGame('crash')"><span class="ico">🚀</span><b>CRASH</b><small>Ракета · забрать до краша</small></button>
-    <button class="game" onclick="openGame('x50')"><span class="ico">🎡</span><b>x50</b><small>Diamond · x2/x3/x5/x50</small></button>
+    <button class="game" onclick="openGame('slot')"><span class="ico"><img class="ce" src="/custom-emoji/5384509325429463744" alt="🎰"></span><b>SLOTS</b><small>5×3 · 16 линий</small></button>
+    <button class="game" onclick="openGame('mines')"><span class="ico"><img class="ce" src="/custom-emoji/5280569974404966639" alt="💣"></span><b>MINES</b><small>5×5 · 2–24 мины</small></button>
+    <button class="game" onclick="openGame('crash')"><span class="ico"><img class="ce" src="/custom-emoji/5426896125745471534" alt="🚀"></span><b>CRASH</b><small>Ракета · забрать до краша</small></button>
+    <button class="game" onclick="openGame('x50')"><span class="ico"><img class="ce" src="/custom-emoji/5382150533685469668" alt="🎡"></span><b>x50</b><small>Diamond · x2/x3/x5/x50</small></button>
     <button class="game" onclick="openGame('upgrader')"><span class="ico">⚡</span><b>UPGRADER</b><small>1–80% · x2/x5/x10</small></button>
   </div>
 </section>
@@ -182,10 +183,10 @@ body{padding-bottom:78px}
 
 <section id="walletView" class="shell-view">
   <div class="card">
-    <div class="section-title">💰 Кошелек</div>
+    <div class="section-title"><img class="ce" src="/custom-emoji/5278467510604160626" alt="💰"> Кошелек</div>
     <div class="muted">Пополнение, вывод и история операций</div>
     <div class="profile-grid">
-      <div class="stat-card"><small>BALANCE</small><b id="walletBalance">0 ₽</b></div>
+      <div class="stat-card"><small>BALANCE</small><b id="walletBalance">0 <img class="ce currency" src="/custom-emoji/5231449120635370684" alt="₽"></b></div>
       <div class="stat-card"><small>ОБОРОТ</small><b id="walletTurnover">0 ₽</b></div>
     </div>
     <div class="row" style="margin-top:10px"><button class="btn primary" style="flex:1" onclick="walletDeposit()">Пополнить</button><button class="btn" style="flex:1" onclick="walletWithdraw()">Вывод</button></div>
@@ -195,7 +196,7 @@ body{padding-bottom:78px}
 
 <section id="profileView" class="shell-view">
   <div class="card">
-    <div class="section-title">👤 | PROFILE</div>
+    <div class="section-title"><img class="ce" src="/custom-emoji/5116116063188157350" alt="👤"> | PROFILE</div>
     <div id="profileId" class="muted" style="margin-top:4px">ID: —</div>
     <div class="profile-grid" id="profileStats"></div>
     <div class="row" style="margin-top:10px"><button class="btn" style="flex:1" onclick="profileHistory('games')">История игр</button><button class="btn" style="flex:1" onclick="profileHistory('payments')">Пополнения</button><button class="btn" style="flex:1" onclick="profileHistory('withdrawals')">Выводы</button></div>
@@ -229,15 +230,15 @@ body{padding-bottom:78px}
 <div id="drawer" class="drawer" onclick="closeDrawer(event)">
   <div class="drawer-panel" onclick="event.stopPropagation()">
     <div class="section-title">☰ RESONANT</div>
-    <button class="btn" onclick="closeDrawer();showShell('lobby')">🎰 Главная</button>
-    <button class="btn" onclick="closeDrawer();showShell('wallet')">💰 Кошелек</button>
+    <button class="btn" onclick="closeDrawer();showShell('lobby')"><img class="ce" src="/custom-emoji/5384509325429463744" alt="🎰"> Главная</button>
+    <button class="btn" onclick="closeDrawer();showShell('wallet')"><img class="ce" src="/custom-emoji/5278467510604160626" alt="💰"> Кошелек</button>
     <button class="btn" onclick="closeDrawer();showShell('bonus')">🎁 Бонусы</button>
-    <button class="btn" onclick="closeDrawer();showShell('profile')">👤 Профиль</button>
+    <button class="btn" onclick="closeDrawer();showShell('profile')"><img class="ce" src="/custom-emoji/5116116063188157350" alt="👤"> Профиль</button>
     <button class="btn" onclick="closeDrawer();openGame('upgrader')">⚡ Upgrader</button>
-    <button class="btn" onclick="closeDrawer();openGame('crash')">🚀 Crash</button>
-    <button class="btn" onclick="closeDrawer();openGame('slot')">🎰 Slots</button>
-    <button class="btn" onclick="closeDrawer();openGame('mines')">💣 Mines</button>
-    <button class="btn" onclick="closeDrawer();openGame('x50')">🎡 x50 / Diamond</button>
+    <button class="btn" onclick="closeDrawer();openGame('crash')"><img class="ce" src="/custom-emoji/5426896125745471534" alt="🚀"> Crash</button>
+    <button class="btn" onclick="closeDrawer();openGame('slot')"><img class="ce" src="/custom-emoji/5384509325429463744" alt="🎰"> Slots</button>
+    <button class="btn" onclick="closeDrawer();openGame('mines')"><img class="ce" src="/custom-emoji/5280569974404966639" alt="💣"> Mines</button>
+    <button class="btn" onclick="closeDrawer();openGame('x50')"><img class="ce" src="/custom-emoji/5382150533685469668" alt="🎡"> x50 / Diamond</button>
     <div id="adminDrawer" style="display:none"><button class="btn" onclick="closeDrawer();adminView()">🛠 ADMIN PANEL</button></div>
   </div>
 </div>
@@ -246,10 +247,10 @@ body{padding-bottom:78px}
 
 <nav class="bottom-nav">
   <button onclick="openDrawer()">☰<br>Меню</button>
-  <button onclick="showShell('lobby')" class="active">🎰<br>Главная</button>
-  <button class="wallet-tab" onclick="showShell('wallet')">💰<br>Кошелек</button>
+  <button onclick="showShell('lobby')" class="active"><img class="ce" src="/custom-emoji/5384509325429463744" alt="🎰"><br>Главная</button>
+  <button class="wallet-tab" onclick="showShell('wallet')"><img class="ce" src="/custom-emoji/5278467510604160626" alt="💰"><br>Кошелек</button>
   <button onclick="showShell('bonus')">🎁<br>Бонусы</button>
-  <button onclick="showShell('profile')">👤<br>Профиль</button>
+  <button onclick="showShell('profile')"><img class="ce" src="/custom-emoji/5116116063188157350" alt="👤"><br>Профиль</button>
 </nav>
 
 <script>
@@ -274,7 +275,7 @@ function setStake(n){if(spinBusy)return;stake=n;$('stakes').innerHTML=stakeButto
 function openGame(g){
   stopCrash();game=g;spinBusy=false;
   $('lobby').classList.remove('active');$('gameView').classList.add('active');
-  const m={slot:['🎰 SLOT','5×3 · 16 линий · Wild / Scatter / Free Spins'],x50:['🎡 x50','Diamond · x2/x3/x5/x50'],crash:['🚀 CRASH','Множитель растёт — заберите вовремя'],mines:['💣 Mines','5×5 · выберите количество мин'],upgrader:['⚡ Upgrader','Выберите коэффициент или шанс выигрыша']}[g];
+  const m={slot:['<img class="ce" src="/custom-emoji/5384509325429463744" alt="🎰"> SLOT','5×3 · 16 линий · Wild / Scatter / Free Spins'],x50:['<img class="ce" src="/custom-emoji/5382150533685469668" alt="🎡"> x50','Diamond · x2/x3/x5/x50'],crash:['<img class="ce" src="/custom-emoji/5426896125745471534" alt="🚀"> CRASH','Множитель растёт — заберите вовремя'],mines:['<img class="ce" src="/custom-emoji/5280569974404966639" alt="💣"> Mines','5×5 · выберите количество мин'],upgrader:['⚡ Upgrader','Выберите коэффициент или шанс выигрыша']}[g];
   $('title').textContent=m[0];$('hint').textContent=m[1];$('stakes').innerHTML=stakeButtons();setStatus('');
   if(g==='slot')slotStart();if(g==='x50')x50Start();if(g==='crash')crashStart();if(g==='mines')minesStart();if(g==='upgrader')upgradeStart();
 }
@@ -450,7 +451,7 @@ async function minesDeal(){try{const d=await api('/api/game/start',{game:'mines'
 function renderMines(d){const op=new Set(d.opened||[]);$('body').innerHTML=`<div class="row between"><span>Множитель <b>${(+d.multiplier||1).toFixed(2)}x</b></span><button class="btn" onclick="mineCash()">ЗАБРАТЬ</button></div><div class="hashbox"><b>ХЭШ РАУНДА</b><br>${d.round_hash||roundHash||''}</div><div class="minegrid">${Array.from({length:25},(_,i)=>`<button class="mine ${op.has(i)?'open':''}" onclick="mineOpen(${i})">${op.has(i)?'◆':'?'}</button>`).join('')}</div>`}
 async function mineOpen(i){try{const d=await api('/api/game/action',{action:'open:'+i});if(d.status==='playing')renderMines(d);else mineFinish(d)}catch(e){setStatus(e.message,true)}}
 async function mineCash(){try{const d=await api('/api/game/action',{action:'cashout'});mineFinish(d)}catch(e){setStatus(e.message,true)}}
-function mineFinish(d){const ms=new Set(d.mines||[]),op=new Set(d.opened||[]);$('body').innerHTML=`<div class="minegrid">${Array.from({length:25},(_,i)=>`<button class="mine ${ms.has(i)?'bomb':op.has(i)?'open':''}">${ms.has(i)?'💣':op.has(i)?'◆':'·'}</button>`).join('')}</div><div class="result ${d.won?'win':'lose'}">${d.won?'🎉 x'+d.multiplier:'💥 Мина'}</div><button class="btn primary wide" style="margin-top:8px" onclick="minesStart()">ЕЩЁ РАЗ</button>`}
+function mineFinish(d){const ms=new Set(d.mines||[]),op=new Set(d.opened||[]);$('body').innerHTML=`<div class="minegrid">${Array.from({length:25},(_,i)=>`<button class="mine ${ms.has(i)?'bomb':op.has(i)?'open':''}">${ms.has(i)?'<img class="ce" src="/custom-emoji/5280569974404966639" alt="💣">':op.has(i)?'◆':'·'}</button>`).join('')}</div><div class="result ${d.won?'win':'lose'}">${d.won?'🎉 x'+d.multiplier:'💥 Мина'}</div><button class="btn primary wide" style="margin-top:8px" onclick="minesStart()">ЕЩЁ РАЗ</button>`}
 
 
 function showShell(name){
