@@ -126,8 +126,6 @@ button:disabled{opacity:.45;cursor:default}
 .upgrade-pcts{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;margin-top:6px}.upgrade-custom{display:grid;grid-template-columns:1fr auto;gap:6px;margin-top:6px}.upgrade-custom input{width:100%;background:#0d1319;border:1px solid #28333b;color:#fff;border-radius:10px;padding:9px}
 .hashbox{margin-top:10px;padding:9px;border:1px solid #202a31;background:#080c10;border-radius:11px;font-size:9px;color:#74808a;word-break:break-all}.hashbox b{color:#a7b3bc}
 
-/* DICE */
-.dice-panel{padding:16px;border:1px solid #1a4563;border-radius:18px;background:radial-gradient(circle at 50% 0,#12344f,#07111c 62%);text-align:center}.dice-cubes{display:flex;justify-content:center;gap:14px;margin:16px 0}.die{width:76px;height:76px;border-radius:18px;display:flex;align-items:center;justify-content:center;background:linear-gradient(145deg,#effaff,#7eb9d6);color:#06111b;font-size:42px;font-weight:1000;box-shadow:0 0 30px #36bfff33;animation:dicePop .4s ease}.dice-bets{display:grid;gap:7px;margin-top:12px}.dice-bets .btn{border-color:#1b5577}.dice-note{font-size:10px;color:#7594a9;margin-top:9px}@keyframes dicePop{from{transform:translateY(-8px) rotate(-7deg);opacity:.5}to{transform:none;opacity:1}}
 /* Other modes */
 .crash-mult{font-size:58px;font-weight:1000;text-align:center;padding:30px 0 24px}
 .minegrid{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin:12px 0}
@@ -159,13 +157,12 @@ body{padding-bottom:78px}
 </header>
 
 <section id="lobby" class="view active">
-  <div class="hero-banner"><img src="/assets/start.jpg" alt="Resonant Casino"><div class="logo">RESONANT <span>CASINO</span></div><p>Играй и побеждай</p></div>
+  <div class="hero-banner"><img src="/start.jpg" alt="Resonant Casino"><div class="logo">RESONANT <span>CASINO</span></div><p>Играй и побеждай</p></div>
   <div class="card lobby-card"><div class="section-title">🎰 GAMES</div><div class="muted">Все режимы синхронизированы с Telegram-ботом</div></div>
   <div class="games">
     <button class="game" onclick="openGame('slot')"><span class="ico">🎰</span><b>SLOTS</b><small>5×3 · 16 линий</small></button>
     <button class="game" onclick="openGame('mines')"><span class="ico">💣</span><b>MINES</b><small>5×5 · 2–24 мины</small></button>
     <button class="game" onclick="openGame('crash')"><span class="ico">🚀</span><b>CRASH</b><small>Ракета · забрать до краша</small></button>
-    <button class="game" onclick="openGame('dice')"><span class="ico">🎲</span><b>DICE</b><small>1 или 2 броска</small></button>
     <button class="game" onclick="openGame('x50')"><span class="ico">🎡</span><b>x50</b><small>Diamond · x2/x3/x5/x50</small></button>
     <button class="game" onclick="openGame('upgrader')"><span class="ico">⚡</span><b>UPGRADER</b><small>1–80% · x2/x5/x10</small></button>
   </div>
@@ -240,7 +237,6 @@ body{padding-bottom:78px}
     <button class="btn" onclick="closeDrawer();openGame('crash')">🚀 Crash</button>
     <button class="btn" onclick="closeDrawer();openGame('slot')">🎰 Slots</button>
     <button class="btn" onclick="closeDrawer();openGame('mines')">💣 Mines</button>
-    <button class="btn" onclick="closeDrawer();openGame('dice')">🎲 Dice</button>
     <button class="btn" onclick="closeDrawer();openGame('x50')">🎡 x50 / Diamond</button>
     <div id="adminDrawer" style="display:none"><button class="btn" onclick="closeDrawer();adminView()">🛠 ADMIN PANEL</button></div>
   </div>
@@ -278,9 +274,9 @@ function setStake(n){if(spinBusy)return;stake=n;$('stakes').innerHTML=stakeButto
 function openGame(g){
   stopCrash();game=g;spinBusy=false;
   $('lobby').classList.remove('active');$('gameView').classList.add('active');
-  const m={slot:['🎰 SLOT','5×3 · 16 линий · Wild / Scatter / Free Spins'],x50:['🎡 x50','Diamond · x2/x3/x5/x50'],crash:['🚀 CRASH','Множитель растёт — заберите вовремя'],dice:['🎲 DICE','Один или два броска'],mines:['💣 Mines','5×5 · выберите количество мин'],upgrader:['⚡ Upgrader','Выберите коэффициент или шанс выигрыша']}[g];
+  const m={slot:['🎰 SLOT','5×3 · 16 линий · Wild / Scatter / Free Spins'],x50:['🎡 x50','Diamond · x2/x3/x5/x50'],crash:['🚀 CRASH','Множитель растёт — заберите вовремя'],mines:['💣 Mines','5×5 · выберите количество мин'],upgrader:['⚡ Upgrader','Выберите коэффициент или шанс выигрыша']}[g];
   $('title').textContent=m[0];$('hint').textContent=m[1];$('stakes').innerHTML=stakeButtons();setStatus('');
-  if(g==='slot')slotStart();if(g==='x50')x50Start();if(g==='crash')crashStart();if(g==='dice')diceStart();if(g==='mines')minesStart();if(g==='upgrader')upgradeStart();
+  if(g==='slot')slotStart();if(g==='x50')x50Start();if(g==='crash')crashStart();if(g==='mines')minesStart();if(g==='upgrader')upgradeStart();
 }
 function back(){stopCrash();game=null;spinBusy=false;$('gameView').classList.remove('active');$('lobby').classList.add('active')}
 function symbol(s){
@@ -447,13 +443,6 @@ async function startCrash(){try{const d=await api('/api/game/start',{game:'crash
 function runCrash(d){$('crashStart').style.display='none';$('cashBtn').style.display='block';$('body').insertAdjacentHTML('beforeend',`<div class="hashbox"><b>ХЭШ РАУНДА</b><br>${d.round_hash}</div>`);stopCrash();crashTimer=setInterval(()=>{const e=Date.now()/1000-d.started_at;const v=1+Math.pow(2,e*d.speed)-1;$('crashM').textContent=v.toFixed(2)+'x'},40)}
 async function cashout(){if(!crashTimer)return;try{const d=await api('/api/game/action',{action:'cashout'});stopCrash();$('cashBtn').style.display='none';$('body').insertAdjacentHTML('beforeend',`<div class="result ${d.won?'win':'lose'}">${d.won?'🎉 Забрано x'+d.multiplier.toFixed(2):'💥 CRASH '+d.crash_point.toFixed(2)+'x'}</div>`)}catch(e){setStatus(e.message,true)}}
 function stopCrash(){if(crashTimer){clearInterval(crashTimer);crashTimer=null}}
-
-/* DICE */
-let diceMode='one',diceBet='lt3';
-function diceStart(){diceMode='one';diceBet='lt3';renderDiceMenu()}
-function renderDiceMenu(){$('body').innerHTML=`<div class="dice-panel"><div class="section-title">🎲 DICE</div><div class="muted" style="margin-top:4px">Минимум 10 ₽ · максимум 5000 ₽</div><div class="row" style="margin-top:14px"><button class="btn primary" style="flex:1" onclick="diceMode='one';renderDiceBets()">Один бросок</button><button class="btn" style="flex:1" onclick="diceMode='two';renderDiceBets()">Два броска</button></div><div id="diceBetBox"></div></div>`;renderDiceBets()}
-function renderDiceBets(){const b=diceMode==='one'?[['lt3','x1.85 | Меньше 3'],['gt3','x1.85 | Больше 3']]:[['eq7','x5.00 | Равно 7'],['lt7','x1.85 | Меньше 7'],['gt7','x1.85 | Больше 7']];$('diceBetBox').innerHTML=`<div class="dice-bets">${b.map(([k,t])=>`<button class="btn ${diceBet===k?'primary':''}" onclick="diceBet='${k}';renderDiceBets()">${t}</button>`).join('')}<button class="btn primary" style="margin-top:4px" onclick="diceRoll()">🎲 БРОСИТЬ · ${money(stake)} ₽</button></div><div class="dice-note">Ставка выбирается сверху. Результат и хэш раунда приходят после броска.</div>`}
-async function diceRoll(){if(spinBusy)return;spinBusy=true;try{const d=await api('/api/game/start',{game:'dice',stake_rub:stake,option:diceMode+':'+diceBet});$('body').innerHTML=`<div class="dice-panel"><div class="section-title">🎲 DICE</div><div class="dice-cubes">${(d.dice||[]).slice(0,diceMode==='one'?1:2).map(x=>`<div class="die">${x}</div>`).join('')}</div><div class="result ${d.won?'win':'lose'}">${d.dice?.length>1?`Сумма: <b>${d.total}</b>`:`Бросок: <b>${d.total}</b>`}<br>${d.won?'🎉 Выигрыш · x'+d.multiplier.toFixed(2)+' · '+money(d.payout)+' ₽':'❌ Проигрыш'}</div><div class="hashbox"><b>ХЭШ РАУНДА</b><br>${d.round_hash}<br><b>SERVER SEED</b><br>${d.server_seed}</div><button class="btn primary wide" style="margin-top:9px" onclick="diceStart()">ЕЩЁ РАЗ</button></div>`}catch(e){setStatus(e.message,true)}finally{spinBusy=false}}
 
 /* MINES */
 function minesStart(){$('body').innerHTML=`<div class="row between"><span>Мин <b id="mc">5</b></span><input id="mr" type="range" min="2" max="24" value="5" oninput="mc.textContent=this.value"></div><button class="btn primary wide" style="margin-top:10px" onclick="minesDeal()">НАЧАТЬ</button>`}
